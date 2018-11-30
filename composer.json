@@ -1,0 +1,19 @@
+{
+    "name": "alireza/hello-world",
+    "description": "hello world plugin for wordpress",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Alireza Okati",
+            "email": "a.r.okati@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\" : "./inc"
+        }
+    }
+}
