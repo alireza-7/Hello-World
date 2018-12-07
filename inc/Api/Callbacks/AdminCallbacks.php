@@ -7,9 +7,11 @@ class AdminCallbacks extends \Inc\Base\BaseController{
     public function adminDashboard(){
         return require_once ($this->plugin_path. '/templates/admin.php');
     }
-    public function helloOptionsGroup($input) {
-        return $input;
+    public function checkBoxSanitize($input) {
+        //return filter_var($input , FILTER_SANITIZE_NUMBER_INT);
+        return (isset($input) ? true : false);
     }
+
     public function helloAdminSection() {
         echo 'check the beatufull section';
     }

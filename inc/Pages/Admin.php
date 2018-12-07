@@ -5,6 +5,7 @@ namespace Inc\Pages;
 use Inc\Base\BaseController;
 use Inc\Api\SettingsApi;
 use Inc\Api\Callbacks\AdminCallbacks;
+use Inc\Api\Callbacks\ManagerCallbacks;
 
 class Admin extends BaseController {
 
@@ -12,10 +13,12 @@ class Admin extends BaseController {
     public $pages;
     public $subPages;
     public $callbacks;
+    public $callbacks_mngr;
 
     public function register() {
         $this->settings = new SettingsApi();
         $this->callbacks=new AdminCallbacks();
+        $this->callbacks_mngr=new ManagerCallbacks();
         $this->setPages();
         $this->setSubPages();
         $this->setSettings();
@@ -75,9 +78,49 @@ class Admin extends BaseController {
     public function setSettings() {
         $args=[
             [
-                'option_group' => 'Hello_Option_Group',
-                'option_name' => 'text_example',
-                'callback' => [$this->callbacks , 'helloOptionsGroup'],
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'cpt_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'taxonomy_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'media_widget',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'gallery_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'testomonial_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'templates_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'login_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'membership_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
+            ],
+            [
+                'option_group' => 'Hello_plugin_settings',
+                'option_name' => 'chat_manager',
+                'callback' => [$this->callbacks , 'checkBoxSanitize'],
             ],
         ];
         $this->settings->setSettings($args);
@@ -87,8 +130,8 @@ class Admin extends BaseController {
         $args=[
             [
                 'id' => 'Hello_admin_index',
-                'title' => 'settings',
-                'callback' => [$this->callbacks , 'helloAdminSection'],
+                'title' => 'settings Managaer',
+                'callback' => [$this->callbacks_mngr , 'adminSectionManager'],
                 'page'=> 'Hello',
                 
             ],
@@ -99,17 +142,114 @@ class Admin extends BaseController {
     public function setFields() {
         $args=[
             [
-                'id' => 'text_example',
-                'title' => 'Text Example',
-                'callback' => [$this->callbacks , 'helloTextExample'],
+                'id' => 'cpt_manager',
+                'title' => 'Activate cpt Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
                 'page'=> 'Hello',
                 'section' => 'Hello_admin_index',
                 'args'=> [
-                    'label_for' => 'text_example',
-                    'class' => 'example-class',
+                    'label_for' => 'cpt_manager',
+                    'class' => 'ui-toggle',
                 ]
                 
             ],
+            [
+                'id' => 'taxonomy_manager',
+                'title' => 'Activate taxonomy Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'taxonomy_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'media_widget',
+                'title' => 'Activate media widget',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'media_widget',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'gallery_manager',
+                'title' => 'Activate gallery Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'gallery_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'testomonial_manager',
+                'title' => 'Activate testomonial Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'testomonial_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'templates_manager',
+                'title' => 'Activate templates Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'templates_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'login_manager',
+                'title' => 'Activate login Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'login_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'membership_manager',
+                'title' => 'Activate membership Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'membership_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            [
+                'id' => 'chat_manager',
+                'title' => 'Activate chat Manager',
+                'callback' => [$this->callbacks_mngr , 'checkBoxField'],
+                'page'=> 'Hello',
+                'section' => 'Hello_admin_index',
+                'args'=> [
+                    'label_for' => 'chat_manager',
+                    'class' => 'ui-toggle',
+                ]
+                
+            ],
+            
         ];
         $this->settings->setFields($args);
     }

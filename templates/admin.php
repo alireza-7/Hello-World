@@ -12,7 +12,7 @@
     
         <form method="post" action="options.php">
             <?php
-            settings_fields('Hello_Option_Group');
+            settings_fields('Hello_plugin_settings');
             do_settings_sections('Hello');
             submit_button();
             ?>
